@@ -1,15 +1,18 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
+#The below code links everything to the other html files in the folder.
+#If theres nothing when it links it will link to the home page.
 @app.route("/")
-def hello_world():
-    return "<h1>Home Page</h1>"
+@app.route("/home")
+def home():
+    return render_template('home.html')
 
 @app.route("/about")
 def about():
-    return "<h1>About Page</h1>"
+    return render_template('about.html')
 
-
+#Makes it able to run in debugging mode ( so when you save it refreshes the website )
 if __name__=='__main__':
     app.run(debug=True)
