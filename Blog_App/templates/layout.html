@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+        {% if title %}
+                <title>Flash_Blog - {{ title }}</title>
+
+        {% else %}
+                <title>Flash_Blog</title>
+        {% endif %}
+</head>
+<body>
+
+    {% block content %}{% endblock %}
+
+</body>
+</html>

@@ -1,23 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<!-- if theres a title then its this-->
-<!-- When putting in a variable dont use percentage-->
-        {% if title%}
-                <title>Flash Blog - {{ title }}</title>
-<!-- if theres no default title then it will go to "Flash_Blog"-->
-        {% else %}
-                <title>Flash Blog</title>
-        {% endif %}
-</head>
-<!--To put python programming in html you use the curly brackets with percentage signs and right the code in that-->
-<body>
-<!-- for each post in the post list in the python app-->
-<!-- double curly brackets are for printing a variable-->
-{% for post in posts%}
+{% extends "layout.html" %}
+{% block content %}
+  {% for post in posts %}
         <h1>{{post.title}}</h1>
         <h3>By {{post.author}} on {{post.date_posted}}</h3>
         <p>{{post.content}}</p>
-{% endfor %}
-</body>
-</html>
+  {% endfor %}
+{% endblock content %}
