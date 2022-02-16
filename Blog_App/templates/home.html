@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title></title>
+<!-- if theres a title then its this-->
+<!-- When putting in a variable dont use percentage-->
+        {% if title%}
+                <title>Flash Blog - {{ title }}</title>
+<!-- if theres no default title then it will go to "Flash_Blog"-->
+        {% else %}
+                <title>Flash Blog</title>
+        {% endif %}
 </head>
 <!--To put python programming in html you use the curly brackets with percentage signs and right the code in that-->
 <body>

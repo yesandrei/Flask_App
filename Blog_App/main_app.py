@@ -38,7 +38,8 @@ def home():
 
 @app.route("/about")
 def about():
-    return render_template('about.html')
+#passing the title so that the title of the website changes only for about
+    return render_template('about.html', title="About")
 
 #Makes it able to run in debugging mode ( so when you save it refreshes the website )
 if __name__=='__main__':
