@@ -1,4 +1,3 @@
-from pdb import post_mortem
 from flask import Flask, render_template
 app = Flask(__name__)
 
@@ -19,6 +18,13 @@ posts = [
         'content':'Second Post Content',     
         'date_posted':'Febuary 4 2022'
     },
+    
+    {
+        'author':'Hannah Bloggs',
+        'title':'Blog Post 3',
+        'content':'Third Post Content',     
+        'date_posted':'Febuary 6 2022'
+    }
     
 ]
 
