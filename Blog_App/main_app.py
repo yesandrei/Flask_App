@@ -51,7 +51,7 @@ def about():
 #route for registration page
 @app.route("/register")
 def register():
-    form = RegisterForm()
+    form = RegistrationForm()
     return render_template('register.html', title="Register", form=form)
 
 #route for login page
