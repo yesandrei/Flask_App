@@ -1,5 +1,12 @@
+#This is a blog app that allows users to register and post blogs
+
 from flask import Flask, render_template, url_for
+from forms import RegistrationForm, LoginForm
 app = Flask(__name__)
+
+#how we configure different things for the app, protects from attacks? encrpyts the password
+app.config['SECRET KEY'] = '47157c05fffe096d630b9d5d37d03e3e'
+
 
 #flask also makes python able to put python programming inside an html document
 
@@ -40,6 +47,18 @@ def home():
 def about():
 #passing the title so that the title of the website changes only for about
     return render_template('about.html', title="About")
+
+#route for registration page
+@app.route("/register")
+def register():
+    form = RegisterForm()
+    return render_template('register.html', title="Register", form=form)
+
+#route for login page
+@app.route("/login")
+def login():
+    form = LoginForm()
+    return render_template('login.html', title="Login", form=form)
 
 #Makes it able to run in debugging mode ( so when you save it refreshes the website )
 if __name__=='__main__':

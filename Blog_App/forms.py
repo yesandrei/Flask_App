@@ -15,7 +15,7 @@ class RegistrationForm(FlaskForm):
 #submit is a button not a text input
 #The red brackets is what will be seen - the label
 
-class RegistrationForm(FlaskForm):
+class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()] )
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember me')
