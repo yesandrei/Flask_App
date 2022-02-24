@@ -43,6 +43,18 @@
       <main role="main" class="container">
         <div class="row">
           <div class="col-md-8">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+<!-- it will get the categories we are sending to them. (whats the =true) like we are sednding the success categories-->
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    {{ message }}
+
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
             {% block content %}{% endblock %}
           </div>
           <div class="col-md-4">
