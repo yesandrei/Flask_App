@@ -5,7 +5,7 @@ from forms import RegistrationForm, LoginForm
 app = Flask(__name__)
 
 #how we configure different things for the app, protects from attacks? encrpyts the password
-app.config['SECRET KEY'] = '47157c05fffe096d630b9d5d37d03e3e'
+app.config['SECRET_KEY'] = '47157c05fffe096d630b9d5d37d03e3e'
 
 
 #flask also makes python able to put python programming inside an html document
