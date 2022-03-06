@@ -59,9 +59,15 @@ def register():
     return render_template('register.html', title="Register", form=form)
 
 #route for login page
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Login Unsuccessful. Please check your email and password', 'danger')
     return render_template('login.html', title="Login", form=form)
 
 #Makes it able to run in debugging mode ( so when you save it refreshes the website )
