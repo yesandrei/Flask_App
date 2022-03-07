@@ -1,7 +1,7 @@
 #This is a blog app that allows users to register and post blogs
 from datetime import datetime
 from flask import Flask, render_template, url_for, flash, redirect
-from flask_SQLAlchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from forms import RegistrationForm, LoginForm
 app = Flask(__name__)
 
@@ -10,9 +10,15 @@ app.config['SECRET_KEY'] = '47157c05fffe096d630b9d5d37d03e3e'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 
-
-
-
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.string(20), unique=True, nullable=False)
+    email = db.Column(db.string(120), unique=True, nullable=False)
+    image_file = db.Column(db.string(20), nullable=False, default='default.jpg')
+    password = db.Column(db.string(60), nullable=False)
+#repr = reprint
+    def __repr__(self):
+        return f"User('{self.username}' '{self.email}', {self.image_file}
 #flask also makes python able to put python programming inside an html document
 
 posts = [
