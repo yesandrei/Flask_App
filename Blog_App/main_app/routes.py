@@ -1,39 +1,7 @@
-#This is a blog app that allows users to register and post blogs
-from datetime import datetime
-from flask import Flask, render_template, url_for, flash, redirect
-from flask_sqlalchemy import SQLAlchemy
-from forms import RegistrationForm, LoginForm
-app = Flask(__name__)
-
-#how we configure different things for the app, protects from attacks? encrpyts the password
-app.config['SECRET_KEY'] = '47157c05fffe096d630b9d5d37d03e3e'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-    password = db.Column(db.String(60), nullable=False)
-    posts = db.relationship('Post', backref='author', lazy=True)
-    
-#repr = reprint
-    def __repr__(self):
-        return f"User('{self.username}' '{self.email}', {self.image_file}')"
-#flask also makes python able to put python programming inside an html document
-
-
-class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    
-    def __repr__(self):
-        return f"Post('{self.title}' '{self.date_posted}')"
-
+from flask import render_template, url_for, flash, redirect
+from main_app import app
+from main_app.forms import RegistrationForm, LoginForm
+from main_app.models import User, Post
 
 posts = [
     
@@ -94,7 +62,3 @@ def login():
         else:
             flash('Login Unsuccessful. Please check your email and password', 'danger')
     return render_template('login.html', title="Login", form=form)
-
-#Makes it able to run in debugging mode ( so when you save it refreshes the website )
-if __name__=='__main__':
-    app.run(debug=True)
